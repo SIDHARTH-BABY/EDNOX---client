@@ -100,7 +100,10 @@ const Form = () => {
   // LOGIN
   const login = async (values, onSubmitProps) => {
     try {
-      const response = await userLogin(values);
+      console.log('running first');
+      const response = await userLogin(values, {
+        headers: { "Content-Type": "application/json" },
+      });
       console.log(response, "jjjj");
 
       if (response.status === 400) {
