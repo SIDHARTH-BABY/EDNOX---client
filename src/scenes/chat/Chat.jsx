@@ -28,7 +28,7 @@ const Chat = () => {
   }, [sendMessage]);
 
   useEffect(() => {
-    socket.current = io("ws://localhost:8800");
+    socket.current = io("ws://localhost:5000");
     socket.current.emit("new-user-add", user._id);
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);

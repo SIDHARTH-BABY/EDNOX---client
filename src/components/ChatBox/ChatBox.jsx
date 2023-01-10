@@ -107,7 +107,7 @@ const ChatBox = ({ chat, currentUser, setSendMessage, receivedMessage }) => {
                 <div className="follower conversation">
                   <div>
                     <img
-                      src={`http://localhost:5000/assets/${
+                      src={`${process.env.REACT_APP_BASE_URL}/assets/${
                         userData
                           ? userData.picturePath
                           : console.log("nothinggg")

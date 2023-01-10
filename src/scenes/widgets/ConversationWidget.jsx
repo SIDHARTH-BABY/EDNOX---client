@@ -29,7 +29,7 @@ const ConversationWidget = ({ data, currentUserId, online }) => {
           {online && <div className="online-dot"></div>}
 
           <img
-            src={`http://localhost:5000/assets/${
+            src={`${process.env.REACT_APP_BASE_URL}/assets/${
               userData ? userData.picturePath : console.log("nothinggg")
             }`}
             alt="user"

@@ -2,23 +2,22 @@ import React from "react";
 import axios from "axios";
 import { Form, Input, Button } from "antd";
 import { Link, useNavigate } from "react-router-dom";
+import { AdminLogin } from "../../api/AdminRequest";
 
 const AdminLoginForm = () => {
   const navigate = useNavigate();
 
   const onFinish = async (values) => {
     try {
-      const data = await axios.post(
-        "http://localhost:5000/admin/login",
-        values
-      );
+      const response = await AdminLogin(values)
 
-      if (data.data.success) {
-        console.log(data);
-        localStorage.setItem("admin-token", data.data.token);
+      if (response.data.success) {
+        console.log(response);
+
+        localStorage.setItem("admin-token", response.data.token);
         navigate("/admin-home");
       } else {
-        console.log(data, "erorrr");
+        console.log(response.data.token, "erorrr");
       }
     } catch (error) {
       console.log(error);

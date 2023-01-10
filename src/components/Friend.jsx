@@ -29,7 +29,7 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
 
   const patchFriend = async () => {
     const response = await addRemoveFriend(_id, friendId);
-    console.log(response.data, "ggggggggggggggggg");
+    
     if (response.data) {
       const data = response.data;
       dispatch(setFriends({ friends: data }));

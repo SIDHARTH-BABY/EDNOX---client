@@ -28,7 +28,7 @@ const SinglePostView = ({ singlePost, setLoading }) => {
           height="auto"
           alt="post"
           style={{ borderRadius: "0.75rem", marginTop: "0.75rem" }}
-          src={`http://localhost:5000/assets/${singlePost.picturePath}`}
+          src={`${process.env.REACT_APP_BASE_URL}/assets/${singlePost.picturePath}`}
         />
       )}
       <FlexBetween mt="0.25rem">
