@@ -100,9 +100,7 @@ const Form = () => {
   // LOGIN
   const login = async (values, onSubmitProps) => {
     try {
-      const response = await userLogin(values, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await userLogin(values);
       console.log(response, "jjjj");
 
       if (response.status === 400) {
@@ -123,7 +121,7 @@ const Form = () => {
       }
     } catch (error) {
       setPasswordLoader(true);
-      console.log(error.data);
+      console.log(error);
     }
   };
 
