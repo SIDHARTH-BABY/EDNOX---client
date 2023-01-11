@@ -16,7 +16,7 @@ import ProtectedRoute from "./components/Admin/AdminProtectedRoute";
 
 import AdminPostReport from "./scenes/adminReport/AdminPostReport";
 import OtpFormm from "./scenes/loginPage/OtpFormm";
-import Errorpage from "./scenes/errorPage/Errorpage";
+
 
 
 
@@ -36,7 +36,7 @@ function App() {
             <Route path="/otp-page" element={<OtpFormm />} />
 
             <Route
-              path="/home"
+              path="/*"
               element={isAuth ? <HomePage /> : <Navigate to="/" />}
             />
             <Route
@@ -60,10 +60,7 @@ function App() {
               path="/admin-post-report"
               element={<ProtectedRoute><AdminPostReport /></ProtectedRoute>}
             />
-            <Route
-              path="/*"
-              element={<Errorpage />}
-            />
+         
 
 
           </Routes>

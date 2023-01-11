@@ -101,9 +101,7 @@ const Form = () => {
   const login = async (values, onSubmitProps) => {
     try {
       console.log('running first');
-      const response = await userLogin(values, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await userLogin(values);
       console.log(response, "jjjj");
 
       if (response.status === 400) {
@@ -117,7 +115,7 @@ const Form = () => {
             token: response.data.token,
           })
         );
-        navigate("/home");
+        navigate("/");
       } else {
         console.log("password eoor");
         setPasswordLoader(true);
