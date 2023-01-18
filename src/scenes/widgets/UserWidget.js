@@ -96,12 +96,10 @@ const UserWidget = ({ userId, picturePath }) => {
     if (image) {
       formData.append("picture", image);
       formData.append("picturePath", image.name);
-
+      setIsImage(false)
     } else {
       setIsImage(true)
-      setTimeout(() => {
-        setIsImage(false)
-      }, 3000);
+
     }
 
     //posting post
@@ -111,7 +109,7 @@ const UserWidget = ({ userId, picturePath }) => {
     if (response.data.success) {
       toast.success(response.data.message);
       setImage(null)
-
+      setLoader(false)
       dispatch(
         setLogin({
           user: response.data.user,
@@ -120,9 +118,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
       );
 
-      setTimeout(() => {
-        setLoader(false)
-      }, 3000);
+
 
 
     }
