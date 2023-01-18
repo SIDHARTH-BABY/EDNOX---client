@@ -35,7 +35,7 @@ const HomePage = () => {
           <PostsWidget userId={_id} />
         </Box>
         {isNonMobileScreens && (
-          <Box flexBasis="26%" m="2rem 0" sx={{ position: "sticky", top: "5" }}>
+          <Box flexBasis="26%"  sx={{ position: "sticky", top: "5" }}>
          
            
             <FriendListWidget userId={_id} />
