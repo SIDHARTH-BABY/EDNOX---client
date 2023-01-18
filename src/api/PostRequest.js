@@ -6,6 +6,8 @@ const API = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
 
 export const UserPostDelete = (postId) => API.post("/posts/post-delete", { postId });
 
+export const editDescription = (description,postId) => API.post("/posts/post-editDescription", {description, postId });
+
 
 export const UserPostReport = (postId, loggedInUserId) => API.patch(`/posts/${postId}/report`, { loggedInUserId });
 

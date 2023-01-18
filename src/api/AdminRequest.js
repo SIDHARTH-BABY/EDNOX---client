@@ -14,4 +14,12 @@ export const blockUserAdmin = (userID) => API.post("/admin/block-user", { userID
 
 export const unBlockUserAdmin = (userID) => API.post("/admin/unblock-user", { userID })
 
-export const usersDataAdmin = () => API.get("admin/get-users")
+export const usersDataAdmin = () => API.get("/admin/get-users")
+
+
+export const markNotification = () => API.get("/admin/mark-all-notifications-as-seen")
+
+export const notificationDelete = () => API.get("/admin/delete-all-notifications")
+
+export const unSeenReports = () => API.get("/admin/get-reports")
+

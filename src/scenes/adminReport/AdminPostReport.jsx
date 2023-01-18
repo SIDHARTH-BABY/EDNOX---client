@@ -25,7 +25,7 @@ const AdminPostReport = () => {
               <AdminSidebar />
             </Box>
             <Box
-              flexBasis={isNonMobileScreens ? "42%" : undefined}
+              flexBasis={isNonMobileScreens ? "100%" : undefined}
               mt={isNonMobileScreens ? undefined : "2rem"}
             >
               <AdminPostReportList/>

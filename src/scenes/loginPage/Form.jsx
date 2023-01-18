@@ -76,6 +76,7 @@ const Form = () => {
 
   const register = async (values, onSubmitProps) => {
     // this allows us to send form info with image
+   
     const formData = new FormData();
     for (let value in values) {
       formData.append(value, values[value]);
@@ -84,16 +85,23 @@ const Form = () => {
     setUserDetails(formData);
 
     const response = await sendOtp(values.email);
-
-    if (response) {
-      console.log(response, "otppppp");
+   
+    if (response.data.success) {
       setRegButton(false);
+      toast.success(response.data.message);
+      console.log(response, "otppppp");
+      setOtpField(true);
+    
+     
       if (response.data.message === "OTP sent") {
-        setOtpField(true);
+       
         setOtp(response.data.response.otp);
       } else {
+        toast.error(response.data.message);
         console.log("erororrr");
       }
+    }else{
+      toast.error(response.data.message);
     }
   };
 
@@ -294,6 +302,7 @@ const Form = () => {
                 <Box>
                   {regButton ? (
                     <Button
+                 
                       fullWidth
                       type="submit"
                       sx={{

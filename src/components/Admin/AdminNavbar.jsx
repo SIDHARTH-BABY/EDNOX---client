@@ -80,6 +80,9 @@ const AdminNavbar = () => {
               <LightMode sx={{ color: dark, fontSize: "25px" }} />
             )}
           </IconButton>
+          <IconButton >
+            <Notifications onClick={()=>navigate("/admin-notifications")} sx={{ fontSize: "25px" }} />
+          </IconButton>
 
           <FormControl variant="standard" value="ADMIN">
             <Select

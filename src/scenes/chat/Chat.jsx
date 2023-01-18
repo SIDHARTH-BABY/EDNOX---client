@@ -8,6 +8,7 @@ import ConversationWidget from "../widgets/ConversationWidget";
 import "./chat.css";
 import { io } from "socket.io-client";
 import { userChats } from "../../api/ChatRequest";
+
 const Chat = () => {
   const user = useSelector((state) => state.user);
   const token = useSelector((state) => state.token);
@@ -19,7 +20,7 @@ const Chat = () => {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
-
+ 
   // Send Message to socket server
   useEffect(() => {
     if (sendMessage !== null) {
@@ -82,6 +83,7 @@ const Chat = () => {
                       setCurrentChat(chat);
                     }}
                   >
+
                     <ConversationWidget
                       data={chat}
                       currentUserId={user._id}

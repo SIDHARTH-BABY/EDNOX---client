@@ -11,6 +11,7 @@ import {
   Button,
   Divider,
   IconButton,
+  Input,
   InputBase,
   Menu,
   MenuItem,
@@ -53,7 +54,7 @@ const PostWidget = ({
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
   const primary = palette.primary.main;
-
+  const ariaLabel = { "aria-label": "description" };
   const [loading, setLoading] = useState(true);
 
   const patchLike = async () => {
@@ -85,6 +86,7 @@ const PostWidget = ({
     console.log(response.data, "hello");
 
     if (response.data) {
+      console.log(response.data.newCommentPost, "commented");
       dispatch(setPost({ post: response.data.newCommentPost }));
     }
   };
@@ -133,6 +135,14 @@ const PostWidget = ({
 
                 {isComments && (
                   <FlexBetween gap="1.5rem">
+                    {/* <Input
+                      label="Comment"
+                      onChange={(e) => setComment(e.target.value)}
+                      inputProps={ariaLabel}
+                    />
+                    <Button variant="outlined" onClick={patchComment}>
+                      Post
+                    </Button> */}
                     <TextField
                       id="outlined-name"
                       label="Comment"
@@ -143,7 +153,7 @@ const PostWidget = ({
                           <Button variant="outlined" onClick={patchComment}>
                             Post
                           </Button>
-                        ),
+                        )
                       }}
                     />
                     {/* value={name}
@@ -158,6 +168,8 @@ const PostWidget = ({
                 setLoading={setLoading}
                 postUserId={postUserId}
                 postId={postId}
+                description={description}
+                picturePath={picturePath}
               />
             </IconButton>
           </FlexBetween>

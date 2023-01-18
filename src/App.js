@@ -16,6 +16,9 @@ import ProtectedRoute from "./components/Admin/AdminProtectedRoute";
 
 import AdminPostReport from "./scenes/adminReport/AdminPostReport";
 import OtpFormm from "./scenes/loginPage/OtpFormm";
+import AdminDashBoard from "./scenes/adminDashBoard/AdminDashBoard";
+import Notifications from "./components/Admin/Notifications";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -25,10 +28,12 @@ function App() {
   const mode = useSelector((state) => state.mode);
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   const isAuth = Boolean(useSelector((state) => state.token));
+
   console.log(isAuth, 'enthannnuuu');
   return (
     <div className="app">
       <BrowserRouter>
+      <Toaster position="top-center" reverseOrder={false} />
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Routes>
@@ -59,6 +64,14 @@ function App() {
             <Route
               path="/admin-post-report"
               element={<ProtectedRoute><AdminPostReport /></ProtectedRoute>}
+            />
+            <Route
+              path="/admin-dashboard"
+              element={<ProtectedRoute><AdminDashBoard/></ProtectedRoute>}
+            />
+            <Route
+              path="/admin-notifications"
+              element={<ProtectedRoute><Notifications/> </ProtectedRoute>}
             />
          
 

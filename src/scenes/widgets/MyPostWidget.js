@@ -17,6 +17,7 @@ import {
     Button,
     IconButton,
     useMediaQuery,
+    LinearProgress,
 } from "@mui/material";
 import FlexBetween from "../../components/FlexBetween";
 import Dropzone from "react-dropzone";
@@ -40,6 +41,8 @@ const MyPostWidget = ({ picturePath }) => {
     const mediumMain = palette.neutral.mediumMain;
     const medium = palette.neutral.medium;
 
+    const [loader, setLoader] = useState(false)
+
     const handlePost = async () => {
         const formData = new FormData();
         formData.append("userId", _id)
@@ -49,15 +52,17 @@ const MyPostWidget = ({ picturePath }) => {
             formData.append("picture", image);
             formData.append("picturePath", image.name);
         }
-
+        setLoader(true)
         //posting post
         const response = await PostData(formData, { headers: { Authorization: `Bearer ${token}` }, })
         console.log(response.data, 'user post chytha dataa');
+
         if (response.data) {
             const posts = response.data
             dispatch(setPosts({ posts }));
             setImage(null);
             setPost("");
+            setLoader(false)
 
         }
 
@@ -180,6 +185,10 @@ const MyPostWidget = ({ picturePath }) => {
                     POST
                 </Button>
             </FlexBetween>
+            <Box mt="1rem">
+                {loader ? (<LinearProgress color="secondary" />) : null}
+            </Box>
+
         </WidgetWrapper>
     )
 }

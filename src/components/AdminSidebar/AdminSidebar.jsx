@@ -1,5 +1,5 @@
 import { ManageAccountsOutlined } from "@mui/icons-material";
-import { Box, Divider, Typography, useTheme } from "@mui/material";
+import { Box, Divider, Typography, useMediaQuery, useTheme } from "@mui/material";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import FlexBetween from "../FlexBetween";
@@ -14,8 +14,12 @@ const AdminSidebar = () => {
   const main = palette.neutral.main;
 
   const location = useLocation();
-
+  const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const adminMenu = [
+    {
+      name: "Admin Dashboard",
+      link: "/admin-dashboard",
+    },
     {
       name: "User Manage",
       link: "/admin-home",
@@ -29,7 +33,7 @@ const AdminSidebar = () => {
     <WidgetWrapper>
       {/* FIRST ROW */}
 
-      <FlexBetween gap="2.5rem" pb="3.1rem">
+      <FlexBetween  gap="2.5rem" pb="3.1rem">
         <div className="main">
           <div className="d-flex layout">
             <div className="sidebar">

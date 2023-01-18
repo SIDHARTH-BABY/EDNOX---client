@@ -1,3 +1,4 @@
+import { useMediaQuery } from "@mui/material";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { useSelector } from "react-redux";
@@ -6,6 +7,7 @@ import { getUserProfile } from "../../api/UserRequest";
 const ConversationWidget = ({ data, currentUserId, online }) => {
   const [userData, setUserData] = useState(null);
   const token = useSelector((state) => state.token);
+  const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
   useEffect(() => {
     const userId = data.members.find((id) => id !== currentUserId);
 
@@ -42,18 +44,18 @@ const ConversationWidget = ({ data, currentUserId, online }) => {
             }}
           />
           <div className="name" style={{ fontSize: "0.8rem" }}>
-            <span>
+          {isNonMobileScreens?   <span>
               {userData ? userData.firstName : ""}{" "}
               {userData ? userData.lastName : ""}
-            </span>
-            <br />
+            </span> : null}
+          
             <span style={{ color: online ? "#51e200" : "" }}>
               {online ? "Online" : "Offline"}
             </span>
           </div>
         </div>
       </div>
-      <hr style={{ width: "85%", border: "0.1px solid #ececec" }} />
+      <hr style={{  border: "0.1px solid #ececec" }} />
     </>
   );
 };
