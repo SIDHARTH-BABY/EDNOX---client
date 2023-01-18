@@ -105,7 +105,7 @@ const UserWidget = ({ userId, picturePath }) => {
     //posting post
     const response = await editProflePic(currUserId._id, formData)
     setLoader(true)
-
+    console.log(response, 'noww');
     if (response.data.success) {
       toast.success(response.data.message);
       setImage(null)
@@ -118,7 +118,7 @@ const UserWidget = ({ userId, picturePath }) => {
 
       );
 
-    }else{
+    } else {
       console.log("erroorrr");
     }
 
