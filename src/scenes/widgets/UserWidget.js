@@ -110,13 +110,7 @@ const UserWidget = ({ userId, picturePath }) => {
       toast.success(response.data.message);
       setImage(null)
       setLoader(false)
-      dispatch(
-        setLogin({
-          user: response.data.user,
-         
-        }),
-
-      );
+      
 
     } else {
       console.log("erroorrr");
