@@ -118,9 +118,8 @@ const UserWidget = ({ userId, picturePath }) => {
 
       );
 
-
-
-
+    }else{
+      console.log("erroorrr");
     }
 
 
