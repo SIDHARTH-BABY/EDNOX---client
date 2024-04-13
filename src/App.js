@@ -38,6 +38,7 @@ function App() {
           <CssBaseline />
           <Routes>
             <Route path="/" element={isAuth ? <HomePage /> : <LoginPage />} />
+            {/* <Route path="/" element={ <HomePage /> } /> */}
             <Route path="/otp-page" element={<OtpFormm />} />
 
             <Route

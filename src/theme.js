@@ -27,6 +27,59 @@ export const colorTokens = {
       800: "#00353F",
       900: "#001519",
     },
+    secondary: { // Define a new color token named 'secondary'
+      50: "#FEE6CC",
+      100: "#FED999",
+      200: "#FEC366",
+      300: "#FEAF33",
+      400: "#FE991A",
+      500: "#FD8200",
+      600: "#CC6600",
+      700: "#995000",
+      800: "#663300",
+      900: "#331900",
+    },
+    blue: {
+      50: "#E6FBFF",
+      100: "#CCF7FE",
+      200: "#99EEFD",
+      300: "#66E6FC",
+      400: "#33DDFB",
+      500: "#00D5FA",
+      600: "#00A0BC",
+      700: "#006B7D",
+      800: "#00353F",
+      900: "#001519",
+    },
+    red: {
+      50: "#FFE6E6",
+      100: "#FFCCCC",
+      200: "#FF9999",
+      300: "#FF6666",
+      400: "#FF3333",
+      500: "#FF0000",
+      600: "#CC0000",
+      700: "#990000",
+      800: "#660000",
+      900: "#330000",
+    },
+    green: {
+      50: "#E6FEE6",
+      100: "#CCFFCC",
+      200: "#99FF99",
+      300: "#66FF66",
+      400: "#33FF33",
+      500: "#00FF00",
+      600: "#00CC00",
+      700: "#009900",
+      800: "#006600",
+      900: "#003300",
+    },
+    black: {
+      50: "#333333",
+      100: "#1A1A1A",
+      200: "#000000",
+  },
   };
   
   // mui theme settings
@@ -41,6 +94,7 @@ export const colorTokens = {
                 dark: colorTokens.primary[200],
                 main: colorTokens.primary[500],
                 light: colorTokens.primary[800],
+                black: colorTokens.blue[200],
               },
               neutral: {
                 dark: colorTokens.grey[100],
@@ -52,6 +106,9 @@ export const colorTokens = {
               background: {
                 default: colorTokens.grey[900],
                 alt: colorTokens.grey[800],
+                alt2: colorTokens.grey[800],
+                alt3: colorTokens.grey[900],
+
               },
             }
           : {
@@ -60,6 +117,7 @@ export const colorTokens = {
                 dark: colorTokens.primary[700],
                 main: colorTokens.primary[500],
                 light: colorTokens.primary[50],
+                black: colorTokens.black[200],
               },
               neutral: {
                 dark: colorTokens.grey[700],
@@ -71,6 +129,9 @@ export const colorTokens = {
               background: {
                 default: colorTokens.grey[10],
                 alt: colorTokens.grey[0],
+                alt2: colorTokens.blue[100],
+                alt3: colorTokens.red[300],
+              
               },
             }),
       },

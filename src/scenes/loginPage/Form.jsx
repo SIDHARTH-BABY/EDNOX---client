@@ -21,7 +21,7 @@ import toast from "react-hot-toast";
 // import otpForm from "./otpForm";
 
 import OtpFormm from "./OtpFormm";
-import { sendOtp, userLogin } from "../../api/AuthRequest";
+import { sendOtp, userLogin, userRegister } from "../../api/AuthRequest";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -84,22 +84,31 @@ const Form = () => {
     formData.append("picturePath", values.picture.name);
     setUserDetails(formData);
 
-    const response = await sendOtp(values.email);
+    const response = await userRegister(userDetails);
+    // const response = await sendOtp(values.email);
    
     if (response.data.success) {
       setRegButton(false);
+      dispatch(
+        setLogin({
+          user: response.data.user,
+          token: response.data.token,
+        })
+      );
+    
+    navigate("/");
       toast.success(response.data.message);
-      console.log(response, "otppppp");
-      setOtpField(true);
+      console.log(response, "otppppp", response.data.user, response.data.token);
+      // setOtpField(true);
     
      
-      if (response.data.message === "OTP sent") {
+      // if (response.data.message === "OTP sent") {
        
-        setOtp(response.data.response.otp);
-      } else {
-        toast.error(response.data.message);
-        console.log("erororrr");
-      }
+      //   // setOtp(response.data.response.otp);
+      // } else {
+      //   toast.error(response.data.message);
+      //   console.log("erororrr");
+      // }
     }else{
       toast.error(response.data.message);
     }
@@ -107,8 +116,9 @@ const Form = () => {
 
   // LOGIN
   const login = async (values, onSubmitProps) => {
+    
     try {
-      console.log('running first');
+      console.log('running first',values);
       const response = await userLogin(values);
       console.log(response, "jjjj");
 

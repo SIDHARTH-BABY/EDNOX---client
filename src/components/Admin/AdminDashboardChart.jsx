@@ -30,7 +30,7 @@ const AdminDashboardChart = () => {
             {
               label: "Users Count",
               backgroundColor: "#blue",
-              data: [12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10],
+              data: [0, 0, 0, 0, 0, 0, 2, 5, 10, 0, 0, 0],
             },
           ],
         }}
