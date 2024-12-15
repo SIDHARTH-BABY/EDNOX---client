@@ -3,18 +3,12 @@ import {
   ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
   FavoriteOutlined,
-  ShareOutlined,
 } from "@mui/icons-material";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import {
   Box,
   Button,
   Divider,
   IconButton,
-  Input,
-  InputBase,
-  Menu,
-  MenuItem,
   TextField,
   Typography,
   useTheme,
@@ -26,9 +20,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPost } from "../../state";
 import PostDelete from "../postDelete/PostDelete";
-import axios from "axios";
 import { CommentPost, LikePost } from "../../api/PostRequest";
-const ITEM_HEIGHT = 48;
 const PostWidget = ({
   postId,
   postUserId,
@@ -54,7 +46,6 @@ const PostWidget = ({
   const main = palette.neutral.main;
   const medium = palette.neutral.medium;
   const primary = palette.primary.main;
-  const ariaLabel = { "aria-label": "description" };
   const [loading, setLoading] = useState(true);
 
   const patchLike = async () => {

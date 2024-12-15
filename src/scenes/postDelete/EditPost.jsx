@@ -14,8 +14,7 @@ import { useDispatch } from "react-redux";
 
 import { editDescription } from "../../api/PostRequest";
 import FlexBetween from "../../components/FlexBetween";
-import WidgetWrapper from "../../components/WidgetWrapper";
-import { setPost, setPosts } from "../../state";
+import { setPost } from "../../state";
 
 const EditPost = ({
   opened,

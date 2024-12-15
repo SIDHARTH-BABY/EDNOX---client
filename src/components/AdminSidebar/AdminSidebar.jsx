@@ -1,5 +1,4 @@
-import { ManageAccountsOutlined } from "@mui/icons-material";
-import { Box, Divider, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { useTheme } from "@mui/material";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import FlexBetween from "../FlexBetween";
@@ -9,12 +8,9 @@ import "./adminsidebar.css";
 const AdminSidebar = () => {
   const { palette } = useTheme();
 
-  const dark = palette.neutral.dark;
-  const medium = palette.neutral.medium;
-  const main = palette.neutral.main;
+
 
   const location = useLocation();
-  const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
   const adminMenu = [
     {
       name: "Admin Dashboard",
