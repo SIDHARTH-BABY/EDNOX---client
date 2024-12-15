@@ -2,10 +2,7 @@ import React from 'react'
 import {
     EditOutlined,
     DeleteOutlined,
-    AttachFileOutlined,
-    GifBoxOutlined,
     ImageOutlined,
-    MicOutlined,
     MoreHorizOutlined,
 } from "@mui/icons-material";
 import {
@@ -31,7 +28,6 @@ import { PostData } from '../../api/PostRequest';
 const MyPostWidget = ({ picturePath }) => {
     const dispatch = useDispatch();
     const [isImage, setIsImage] = useState(false);
-    const [isClip, setIsClip] = useState(false);
     const [image, setImage] = useState(null);
     const [post, setPost] = useState("");
     const { palette } = useTheme();
