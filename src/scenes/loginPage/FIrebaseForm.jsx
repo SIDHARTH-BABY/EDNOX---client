@@ -22,7 +22,15 @@ import toast from "react-hot-toast";
 
 import OtpFormm from "./OtpFormm";
 import { sendOtp, userLogin, userRegister } from "../../api/AuthRequest";
-
+import {
+  createUserWithEmailAndPassword,
+  fetchSignInMethodsForEmail,
+  signInWithEmailAndPassword,
+  signInWithPopup,
+} from "firebase/auth";
+import { auth, db, googleProvider, imgStorage } from "../../config/firebase";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import {ref,uploadBytes,getDownloadURL} from "firebase/storage"
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
   lastName: yup.string().required("required"),
@@ -58,7 +66,7 @@ const initialValuesLogin = {
   password: "",
 };
 
-const Form = () => {
+const FirebaseForm = () => {
   const [passwordLoader, setPasswordLoader] = useState(false);
   const [pageType, setPageType] = useState("login");
   const [otpField, setOtpField] = useState(false);
@@ -71,62 +79,93 @@ const Form = () => {
   const isNonMobile = useMediaQuery("(min-width:600px)");
   const isLogin = pageType === "login";
   const isRegister = pageType === "register";
-
+  const [url,setUrl] = useState(null)
+  const checkEmailExists = async (email) => {
+    try {
+      const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+      return signInMethods.length > 0; // Email exists if sign-in methods are returned
+    } catch (error) {
+      toast.error("email already exist");
+      return false;
+    }
+  };
   //   REGISTER
-
   const register = async (values, onSubmitProps) => {
     try {
-      // Prepare form data
       const formData = new FormData();
-      for (const key in values) {
-        if (values.hasOwnProperty(key)) {
-          formData.append(key, values[key]);
-        }
+      for (let value in values) {
+        formData.append(value, values[value]);
       }
+      formData.append("picturePath", values.picture.name);
 
-      // Safely add picturePath
-      if (values.picture) {
-        formData.append("picturePath", values.picture.name);
+      const email = formData.get("email");
+      const password = formData.get("password");
+      const firstName = formData.get("firstName");
+      const lastName = formData.get("lastName");
+      const location = formData.get("location");
+      const occupation = formData.get("occupation");
+      const picturePath = formData.get("picturePath");
+      console.log(
+        firstName,
+        lastName,
+        location,
+        occupation,
+        picturePath,
+        email,
+        "coming values"
+      );
+      
+      const emailExists = await checkEmailExists(email);
+      if (emailExists) {
+        console.error("This email is already in use.");
+        return;
       }
-
-      // Debug formData
-      for (let [key, value] of formData.entries()) {
-        console.log(`${key}: ${value}`); // Log form data for debugging
-      }
-
-      // API call to register user
-      const response = await userRegister(formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
-
-      // Handle response
-      if (response.data.success) {
+      const imageRef = ref(imgStorage,"image")
+      uploadBytes(imageRef,picturePath).then(()=>{ 
+        getDownloadURL(imageRef).then((url)=>{
+            console.log(url,'url');
+            
+            setUrl(url)
+        }).catch((err)=>{
+            console.log(err,'sec');
+            
+        })
+      }).catch((err)=>{
+        console.log(err,'first');
+        
+      })
+      const authResult = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      const user = authResult.user;
+      console.log(user, "User created");
+      if (!user) throw new Error("User creation failed");
+      if (user) {
+        await setDoc(doc(db, "Users", user.uid), {
+          firstName,
+          lastName,
+          location,
+          occupation,
+          picturePath: url,
+          email,
+          isAdmin:false,
+          seenNotifications:[],
+          unseenNotifications:[],
+          Active:true,
+          impressions: 1,
+          _id:user.uid
+        });
+        console.log("User registered successfully");
         toast.success("User registered successfully");
-        setRegButton(false);
-
-        // Dispatch login action
-        dispatch(
-          setLogin({
-            user: response.data.user,
-            token: response.data.token,
-          })
-        );
-
-        // Navigate to homepage
-        navigate("/");
-      } else {
-        toast.error(
-          response.data.error || "Registration failed. Please try again."
-        );
       }
     } catch (error) {
-      // Extract error message
-      const errorMessage = "An unexpected error occurred. Please try again.";
-
-      console.error("Registration Error:", error); // Log error for debugging
-      toast.error(errorMessage); // Display user-friendly error
+      console.error("Registration error:", error);
+      const errorMessage =
+        error.message ||
+        "Something went wrong during registration. Please try again.";
+      toast.error(errorMessage);
     }
   };
 
@@ -134,36 +173,66 @@ const Form = () => {
   const login = async (values, onSubmitProps) => {
     try {
       console.log("running first", values);
-      const response = await userLogin(values);
-      console.log(response, "jjjj");
+      const { email, password } = values;
+      console.log("email, password", email, password);
 
+      const response = await signInWithEmailAndPassword(auth, email, password);
+      console.log(response, "jjjj");
+      if (response.user) {
+        auth.onAuthStateChanged(async (user) => {
+          console.log(user, "user comign here");
+          const docRef = doc(db, "Users", user.uid);
+          const docSnap = await getDoc(docRef);
+          console.log(docSnap.data(),'doc snapp');
+          
+          if (docSnap) {
+            dispatch(
+              setLogin({
+                user: docSnap.data(),
+                token: response.user.accessToken,
+              })
+            );
+            navigate("/");
+          }
+        });
+      }
       if (response.status === 400) {
         console.log("erroorrr");
       }
 
       if (response.data.success) {
-        toast.success("User loggeIn successfully");
+        toast.success("User registered successfully");
+
         dispatch(
           setLogin({
             user: response.data.user,
-            token: response.data.token,
+            token: response.user.accessToken,
           })
         );
         navigate("/");
       } else {
-        console.log("password eoor");
+        console.log("password error");
         setPasswordLoader(true);
       }
     } catch (error) {
       setPasswordLoader(true);
       console.log(error);
-      toast.success(error);
     }
   };
 
   const handleFormSubmit = async (values, onSubmitProps) => {
     if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
+  };
+
+  const signInWithGoogle = async () => {
+    try {
+      // Ensure auth and googleProvider are correctly initialized
+      const result = await signInWithPopup(auth, googleProvider);
+      console.log("User signed in:", result.user);
+    } catch (error) {
+      console.error("Error during sign-in:", error);
+    }
   };
   return (
     <div>
@@ -212,11 +281,10 @@ const Form = () => {
                     <>
                       <TextField
                         label="First Name"
-                        name="firstName"
                         onBlur={handleBlur}
                         onChange={handleChange}
                         value={values.firstName}
-                        
+                        name="firstName"
                         error={
                           Boolean(touched.firstName) &&
                           Boolean(errors.firstName)
@@ -296,11 +364,6 @@ const Form = () => {
                             </Box>
                           )}
                         </Dropzone>
-                        {touched.picture && errors.picture && (
-                          <Typography color="error">
-                            {errors.picture}
-                          </Typography>
-                        )}
                       </Box>
                     </>
                   )}
@@ -370,6 +433,21 @@ const Form = () => {
               </form>
             )}
           </Formik>
+          <Box>
+            {/* <Button
+        fullWidth
+        onClick={signInWithGoogle} // Attach the function here without wrapping it
+        sx={{
+          m: "2rem 0",
+          p: "1rem",
+          backgroundColor: palette.neutral.mediumMain,
+          color: palette.background.alt,
+          "&:hover": { color: palette.primary.main },
+        }}
+      >
+        {isLogin ? "SIGN IN WITH GOOGLE" : "REGISTER"}
+      </Button> */}
+          </Box>
         </div>
       ) : null}
       {otpField ? (
@@ -385,4 +463,4 @@ const Form = () => {
   );
 };
 
-export default Form;
+export default FirebaseForm;

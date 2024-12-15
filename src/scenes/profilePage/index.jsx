@@ -16,7 +16,6 @@ const ProfilePage = () => {
   const token = useSelector((state) => state.token);
   const isNonMobileScreens = useMediaQuery("(min-width:1000px)");
 
-
   //Get User
   const getUser = async () => {
     const { data } = await getUserProfile(location.state.userId, {
@@ -28,6 +27,12 @@ const ProfilePage = () => {
   };
 
   useEffect(() => {
+    getUser();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    console.log(location.state.userId,'lcoation user id');
+    
     getUser();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 

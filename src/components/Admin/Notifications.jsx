@@ -35,7 +35,7 @@ const Notifications = () => {
 
       }
     } catch (error) {
-      toast.error("Something went wrong");
+      toast.error(error);
     }
   };
 

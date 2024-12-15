@@ -68,6 +68,69 @@ const MyPostWidget = ({ picturePath }) => {
 
 
     }
+    // const register = async (values, onSubmitProps) => {
+    //     try {
+    //       const formData = new FormData();
+    //       for (let value in values) {
+    //         formData.append(value, values[value]);
+    //       }
+    //       formData.append("picturePath", values.picture.name);
+    
+    //       const email = formData.get("email");
+    //       const password = formData.get("password");
+    //       const firstName = formData.get("firstName");
+    //       const lastName = formData.get("lastName");
+    //       const location = formData.get("location");
+    //       const occupation = formData.get("occupation");
+    //       const picturePath = formData.get("picturePath");
+    //       console.log(
+    //         firstName,
+    //         lastName,
+    //         location,
+    //         occupation,
+    //         picturePath,
+    //         email,
+    //         "coming values"
+    //       );
+    //       const emailExists = await checkEmailExists(email);
+    //       if (emailExists) {
+    //         console.error("This email is already in use.");
+    //         return;
+    //       }
+    //       const authResult = await createUserWithEmailAndPassword(
+    //         auth,
+    //         email,
+    //         password
+    //       );
+    //       const user = authResult.user;
+    //       console.log(user, "User created");
+    //       if (!user) throw new Error("User creation failed");
+    //       if (user) {
+    //         await setDoc(doc(db, "Users", user.uid), {
+    //           firstName,
+    //           lastName,
+    //           location,
+    //           occupation,
+    //           picturePath,
+    //           email,
+    //           isAdmin:false,
+    //           seenNotifications:[],
+    //           unseenNotifications:[],
+    //           Active:true,
+    //           impressions: 1,
+    //           _id:user.uid
+    //         });
+    //         console.log("User registered successfully");
+    //         toast.success("User registered successfully");
+    //       }
+    //     } catch (error) {
+    //       console.error("Registration error:", error);
+    //       const errorMessage =
+    //         error.message ||
+    //         "Something went wrong during registration. Please try again.";
+    //       toast.error(errorMessage);
+    //     }
+    //   };
 
     return (
         <WidgetWrapper>
