@@ -6,7 +6,6 @@ import WidgetWrapper from "../WidgetWrapper";
 import "./adminsidebar.css";
 
 const AdminSidebar = () => {
-  const { palette } = useTheme();
 
 
 
