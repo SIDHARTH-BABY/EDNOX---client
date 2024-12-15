@@ -1,14 +1,12 @@
 import React from "react";
 
-import { Table, Divider, Tag, Button } from "antd";
-import axios from "axios";
+import { Table,  Button } from "antd";
 import { useEffect } from "react";
 import { useState } from "react";
 import { blockUserAdmin, unBlockUserAdmin, usersDataAdmin } from "../../api/AdminRequest";
 
 const AdminUsersList = () => {
   const [user, setUser] = useState([]);
-  const [active, setActive] = useState([]);
 
   const { Column } = Table;
 

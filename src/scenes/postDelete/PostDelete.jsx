@@ -25,8 +25,6 @@ const PostDelete = ({
 }) => {
   const [deleteAlert, setDeleteAlert] = useState(false);
   const [reportAlert, setReportAlert] = useState(false);
-  const [editAlert, setEditAlert] = useState(false);
-  const [loader, setLoader] = useState(false);
   const [opened, setOpened] = useState(false);
   const handleOpened = () => setOpened(true);
   const handleClosed = () => setOpened(false);
@@ -51,7 +49,6 @@ const PostDelete = ({
     try {
       console.log(postId, "herer post Id");
       const response = await UserPostDelete(postId);
-      setLoader(true);
       if (response.data.success) {
 
         toast.success(response.data.message);
@@ -59,7 +56,6 @@ const PostDelete = ({
         console.log(updatedPosts, "ithannu new posts");
         dispatch(setPost({ post: updatedPosts }));
         setLoading(false);
-        setLoader(false);
       }
     } catch (error) {
       console.log(error);
