@@ -4,7 +4,6 @@ import {
   EditOutlined,
   LocationOnOutlined,
   WorkOutlineOutlined,
-  Message,
   DeleteOutlined,
 } from "@mui/icons-material";
 import TextsmsIcon from '@mui/icons-material/Textsms';
@@ -18,7 +17,6 @@ import { useNavigate } from "react-router-dom";
 import CreateIcon from '@mui/icons-material/Create';
 import Modal from '@mui/material/Modal';
 import { Button, Form, Input } from "antd";
-import axios from "axios";
 import { setLogin } from '../../state';
 import { createUserChat } from '../../api/ChatRequest';
 import { editProflePic, editUser, getUserProfile } from '../../api/UserRequest';
@@ -177,8 +175,6 @@ const UserWidget = ({ userId, picturePath }) => {
     lastName,
     location,
     occupation,
-    viewedProfile,
-    impressions,
     friends,
   } = user;
 

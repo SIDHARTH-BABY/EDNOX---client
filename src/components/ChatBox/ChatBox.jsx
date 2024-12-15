@@ -5,7 +5,6 @@ import "./chatBox.css";
 import { format } from "timeago.js";
 
 // import InputEmoji from "react-input-emoji";
-import axios from "axios";
 import { getUserProfile } from "../../api/UserRequest";
 import { addMessage, getMessages } from "../../api/MessageRequest";
 

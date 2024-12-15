@@ -4,7 +4,6 @@ import { Tabs } from "antd";
 import { Box } from "@mui/system";
 import AdminNavbar from "./AdminNavbar";
 import { Typography, useMediaQuery } from "@mui/material";
-import axios from "axios";
 import {
   markNotification,
   notificationDelete,

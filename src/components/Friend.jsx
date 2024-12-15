@@ -13,7 +13,6 @@ const Friend = ({ friendId, name, subtitle, userPicturePath }) => {
   const navigate = useNavigate();
   const { _id } = useSelector((state) => state.user);
 
-  const token = useSelector((state) => state.token);
 
   const friends = useSelector((state) => state.user.friends);
 

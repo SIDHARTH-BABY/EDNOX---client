@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
-import React, { Component } from 'react';
+import React from 'react';
 import Chat from "./scenes/chat/Chat";
 import AdminLogin from "./scenes/adminLogin/AdminLogin";
 import AdminHome from "./scenes/adminHome/AdminHome";
@@ -29,7 +29,6 @@ function App() {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   const isAuth = Boolean(useSelector((state) => state.token));
 
-  console.log(isAuth, 'enthannnuuu');
   return (
     <div className="app">
       <BrowserRouter>
