@@ -1,4 +1,3 @@
-import { useTheme } from "@mui/material";
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
 import FlexBetween from "../FlexBetween";

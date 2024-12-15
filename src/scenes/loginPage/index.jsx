@@ -1,6 +1,5 @@
 import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
-import React, { Component } from "react";
-import { Navigate } from "react-router-dom";
+import React from "react";
 import Form from "./Form";
 
 const LoginPage = () => {

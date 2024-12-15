@@ -1,7 +1,6 @@
 import React from "react";
-import axios from "axios";
 import { Form, Input, Button } from "antd";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 import { AdminLogin } from "../../api/AdminRequest";
 
 const AdminLoginForm = () => {

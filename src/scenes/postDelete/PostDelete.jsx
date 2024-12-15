@@ -1,28 +1,17 @@
 import {
   Alert,
-  AlertTitle,
-  Backdrop,
   Button,
-  Fade,
   IconButton,
-  LinearProgress,
   Menu,
-  MenuItem,
-  Modal,
-  Typography,
 } from "@mui/material";
-import React, { useCallback } from "react";
+import React from "react";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 // import { Button } from "antd";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import axios from "axios";
 import { useState } from "react";
-import { setPost, setPosts } from "../../state";
+import { setPost } from "../../state";
 import { UserPostDelete, UserPostReport } from "../../api/PostRequest";
-import { useReducer } from "react";
-import WidgetWrapper from "../../components/WidgetWrapper";
-import { Box } from "@mui/system";
+
 import EditPost from "./EditPost";
 import { toast } from "react-hot-toast";
 const ITEM_HEIGHT = 48;
@@ -44,7 +33,6 @@ const PostDelete = ({
 
   const [ reportOff , serReportOff] = useState(true);
 
-  const [loaderDelete, setLoaderDelete] = useState(false);
   const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -65,7 +53,7 @@ const PostDelete = ({
       const response = await UserPostDelete(postId);
       setLoader(true);
       if (response.data.success) {
-        setLoaderDelete(true);
+
         toast.success(response.data.message);
         let updatedPosts = response.data.newposts;
         console.log(updatedPosts, "ithannu new posts");

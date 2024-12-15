@@ -1,6 +1,6 @@
 import { useMediaQuery } from "@mui/material";
 import { Box } from "@mui/system";
-import React, { useState } from "react";
+import React from "react";
 import AdminNavbar from "../../components/Admin/AdminNavbar";
 import AdminPostReportList from "../../components/Admin/AdminPostReportList";
 import AdminSidebar from "../../components/AdminSidebar/AdminSidebar";

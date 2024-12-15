@@ -20,8 +20,8 @@ import FlexBetween from "../../components/FlexBetween";
 import toast from "react-hot-toast";
 // import otpForm from "./otpForm";
 
-import OtpFormm from "./OtpFormm";
-import { sendOtp, userLogin, userRegister } from "../../api/AuthRequest";
+
+import {  userLogin, userRegister } from "../../api/AuthRequest";
 
 const registerSchema = yup.object().shape({
   firstName: yup.string().required("required"),
@@ -61,9 +61,6 @@ const initialValuesLogin = {
 const Form = () => {
   const [passwordLoader, setPasswordLoader] = useState(false);
   const [pageType, setPageType] = useState("login");
-  const [otpField, setOtpField] = useState(false);
-  const [otp, setOtp] = useState("");
-  const [userDetails, setUserDetails] = useState();
   const [regButton, setRegButton] = useState(true);
   const { palette } = useTheme();
   const dispatch = useDispatch();
@@ -180,7 +177,7 @@ const Form = () => {
       ) : (
         ""
       )}
-      {!otpField ? (
+     
         <div>
           <Formik
             onSubmit={handleFormSubmit}
@@ -371,16 +368,8 @@ const Form = () => {
             )}
           </Formik>
         </div>
-      ) : null}
-      {otpField ? (
-        <OtpFormm
-          userDetails={userDetails}
-          otp={otp}
-          setPageType={setPageType}
-          setOtpField={setOtpField}
-          setRegButton={setRegButton}
-        />
-      ) : null}
+     
+
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Table, Divider, Tag, Button } from "antd";
-import axios from "axios";
+import { Table, Divider,  Button } from "antd";
 import SinglePostView from "./SinglePostView";
 import {
   postDeleteAdmin,

@@ -1,9 +1,7 @@
 import {
-  ChatBubbleOutlineOutlined,
   FavoriteBorderOutlined,
-  FavoriteOutlined,
 } from "@mui/icons-material";
-import { Button, IconButton, Typography, useTheme } from "@mui/material";
+import {IconButton, Typography, useTheme } from "@mui/material";
 import React from "react";
 
 import FlexBetween from "../FlexBetween";
