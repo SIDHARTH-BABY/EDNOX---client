@@ -1,10 +1,11 @@
-import { Box, Typography, useTheme, useMediaQuery } from "@mui/material";
+import { Box, Typography, useTheme, useMediaQuery, TextField } from "@mui/material";
 import React from "react";
 import Form from "./Form";
 
 const LoginPage = () => {
   const theme = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
+  
   return (
     <Box
       width="100%"
@@ -24,9 +25,24 @@ const LoginPage = () => {
         borderRadius="1.5rem"
         backgroundColor={theme.palette.background.alt}
       >
-        <Typography fontWeight="500" variant="h5" sx={{ mb: "1.5rem" }}>
+        <Typography fontWeight="500" variant="h5" sx={{ mb: "1rem" }}>
           Welcome to EDNOX, the Social Media for Sociopaths!
         </Typography>
+
+        {/* Guest Credentials Box */}
+        <Box
+          p="1rem"
+          mb="1.5rem"
+          borderRadius="0.5rem"
+          backgroundColor={theme.palette.background.alt}
+        >
+          <Typography variant="body1" fontWeight="500" fontSize="25px">
+            Use Guest Credentials:
+          </Typography>
+          <Typography variant="h5">✉️ Email: guest@gmail.com</Typography>
+          <Typography variant="h5">🔑 Password: 1234</Typography>
+        </Box>
+
         <Form />
       </Box>
     </Box>

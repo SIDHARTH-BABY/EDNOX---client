@@ -19,6 +19,7 @@ import OtpFormm from "./scenes/loginPage/OtpFormm";
 import AdminDashBoard from "./scenes/adminDashBoard/AdminDashBoard";
 import Notifications from "./components/Admin/Notifications";
 import { Toaster } from "react-hot-toast";
+import GuestHome from "./scenes/guestUser/GuestHome";
 
 
 
