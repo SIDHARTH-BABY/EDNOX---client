@@ -38,6 +38,7 @@ const LoginPage = () => {
         >
           <Typography variant="body1" fontWeight="500" fontSize="25px">
             Use Guest Credentials:
+            
           </Typography>
           <Typography variant="h5">✉️ Email: guest@gmail.com</Typography>
           <Typography variant="h5">🔑 Password: 1234</Typography>
