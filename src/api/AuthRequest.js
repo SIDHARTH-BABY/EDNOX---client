@@ -1,7 +1,6 @@
 import axios from "axios";
 
-// const API = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
-const API = axios.create({ baseURL: '/api' });
+const API = axios.create({ baseURL: process.env.REACT_APP_BASE_URL });
 
 
 export const sendOtp = (email) => API.post("/send-otp", { email })
