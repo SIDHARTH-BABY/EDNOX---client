@@ -8,7 +8,6 @@ import { useSelector } from "react-redux";
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { themeSettings } from "./theme";
-import React from 'react';
 import Chat from "./scenes/chat/Chat";
 import AdminLogin from "./scenes/adminLogin/AdminLogin";
 import AdminHome from "./scenes/adminHome/AdminHome";
@@ -19,7 +18,6 @@ import OtpFormm from "./scenes/loginPage/OtpFormm";
 import AdminDashBoard from "./scenes/adminDashBoard/AdminDashBoard";
 import Notifications from "./components/Admin/Notifications";
 import { Toaster } from "react-hot-toast";
-import GuestHome from "./scenes/guestUser/GuestHome";
 
 
 
