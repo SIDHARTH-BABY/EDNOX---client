@@ -5,7 +5,7 @@ import Form from "./Form";
 const LoginPage = () => {
   const theme = useTheme();
   const isNonMobileScreens = useMediaQuery("(min-width: 1000px)");
-  
+
   return (
     <Box
       width="100%"
@@ -38,10 +38,19 @@ const LoginPage = () => {
         >
           <Typography variant="body1" fontWeight="500" fontSize="25px">
             Use Guest Credentials:
-            
           </Typography>
-          <Typography variant="h5">✉️ Email: guest@gmail.com</Typography>
-          <Typography variant="h5">🔑 Password: 1234</Typography>
+          <Typography variant="h5">
+            <span role="img" aria-label="email">
+              ✉️
+            </span>{" "}
+            Email: guest@gmail.com
+          </Typography>
+          <Typography variant="h5">
+            <span role="img" aria-label="key">
+              🔑
+            </span>{" "}
+            Password: 1234
+          </Typography>{" "}
         </Box>
 
         <Form />
