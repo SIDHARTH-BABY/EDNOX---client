@@ -1,7 +1,5 @@
 import { Box, useMediaQuery } from "@mui/material";
 import React from "react";
-import { useSelector } from "react-redux";
-import { User } from "lucide-react";
 import GuestPostWidge from "./GuestPostWidge";
 import GuestNavbar from "./GuestNavbar";
 

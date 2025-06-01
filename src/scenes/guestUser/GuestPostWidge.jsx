@@ -1,7 +1,7 @@
 import React from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { feedPosts, GetUserPostData } from "../../api/PostRequest";
+import { feedPosts } from "../../api/PostRequest";
 import { setPosts } from "../../state";
 import GuestPostWidget from "./GuestPostWidget";
 
