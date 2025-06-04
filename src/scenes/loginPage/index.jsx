@@ -30,7 +30,7 @@ const LoginPage = () => {
         </Typography>
 
         {/* Guest Credentials Box */}
-        <Box
+        {/* <Box
           p="1rem"
           mb="1.5rem"
           borderRadius="0.5rem"
@@ -51,7 +51,7 @@ const LoginPage = () => {
             </span>{" "}
             Password: 1234
           </Typography>{" "}
-        </Box>
+        </Box> */}
 
         <Form />
       </Box>
